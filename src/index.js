@@ -1,8 +1,8 @@
 import './css/styles.css'
-import {fetchImages}  from './image-service.js';
+import {fetchImages}  from './image-service.js'
 import Notiflix from 'notiflix'
-import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
+import simpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css'
 
 const refs = {
     searchForm: document.querySelector('.search-form'),
@@ -40,7 +40,7 @@ const refs = {
          return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.')
       } else {
         renderGallery(data.hits)
-        simpleLightBox = new SimpleLightbox('.gallery a').refresh()
+        simpleLightBox = new simpleLightbox('.gallery a').refresh()
         Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`)
 
         if (data.totalHits > perPage) {
@@ -57,7 +57,7 @@ function onLoadMoreBtn() {
   fetchImages(searchQuery, page, perPage)
     .then(({ data }) => {
       renderGallery(data.hits)
-      simpleLightBox = new SimpleLightbox('.gallery a').refresh()
+      simpleLightBox = new simpleLightbox('.gallery a').refresh()
 
       const totalPages = Math.ceil(data.totalHits / perPage)
 
