@@ -1,7 +1,7 @@
 import './css/styles.css'
 import {fetchImages}  from './image-service.js'
-import Notiflix from 'notiflix'
-import simpleLightbox from 'simplelightbox';
+import Notiflix from 'notiflix/build/notiflix-notify-aio'
+import simpleLightbox from 'Simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css'
 
 const refs = {
@@ -10,6 +10,7 @@ const refs = {
     LoadMoreBtn: document.querySelector('.load-more'),
     
   };
+  const galleryEl = document.querySelector('.gallery .a')
   console.log(refs.searchForm)
   console.log(refs.GalleryContainer)
   console.log(refs.LoadMoreBtn)
@@ -17,6 +18,7 @@ const refs = {
   let searchQuery;
   let page = 1
   const perPage = 40
+  let simpleLightBox
 
   refs.searchForm.addEventListener('submit', onSearch);
   refs.LoadMoreBtn.addEventListener('click', onLoadMoreBtn)
@@ -40,7 +42,7 @@ const refs = {
          return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.')
       } else {
         renderGallery(data.hits)
-        simpleLightBox = new simpleLightbox('.gallery').refresh()
+        simpleLightBox = new simpleLightbox('.gallery a').refresh()
         Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`)
 
         if (data.totalHits > perPage) {
