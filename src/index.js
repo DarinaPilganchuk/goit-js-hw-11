@@ -40,7 +40,7 @@ const refs = {
          return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.')
       } else {
         renderGallery(data.hits)
-        simpleLightBox = new simpleLightbox('.gallery a').refresh()
+        simpleLightBox = new simpleLightbox('.gallery').refresh()
         Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`)
 
         if (data.totalHits > perPage) {
